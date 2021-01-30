@@ -1,0 +1,11 @@
+version: '3'
+services:
+  rest_api_test:
+    build:
+      context: .
+    ports:
+      - "9000:9000"
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"

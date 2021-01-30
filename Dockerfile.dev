@@ -1,0 +1,19 @@
+FROM golang:alpine
+
+WORKDIR app
+
+ENV CGO_ENABLED=0
+
+RUN apk add --no-cache git
+RUN export PATH="$PATH:$GOPATH/bin"
+RUN go get github.com/revel/revel
+RUN go get github.com/revel/cmd/revel
+
+COPY app ./app
+COPY conf ./conf
+COPY messages ./messages
+COPY public ./public
+COPY tests ./tests
+COPY go.mod .
+
+RUN go get github.com/revel/modules
